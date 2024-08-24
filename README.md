@@ -432,23 +432,25 @@ hello in this world i cant stop for this non stop movement stop
 
 
 cat herecheck.txt
+
 ## OUTPUT
+'''
 
-
-cat < scriptest.sh 
-bash
-\#!/bin/sh
-echo “File name is $0 ”
-echo "File name is " basename $0
-echo “First arg. is ” $1
-echo “Second arg. is ” $2
-echo “Third arg. is ” $3
-echo “Fourth arg. is ” $4
-echo 'The $@ is ' $@
-echo 'The $\# is ' $1#
-echo 'The $$ is ' $$
-ps
-^d
+	cat < scriptest.sh 
+	bash
+	\#!/bin/sh
+	echo “File name is $0 ”
+	echo "File name is " basename $0
+	echo “First arg. is ” $1
+	echo “Second arg. is ” $2
+	echo “Third arg. is ” $3
+	echo “Fourth arg. is ” $4
+	echo 'The $@ is ' $@
+	echo 'The $\# is ' $1#
+	echo 'The $$ is ' $$
+	ps
+	^d
+'''
 cat scriptest.sh
 
 \#!/bin/sh
@@ -466,23 +468,23 @@ chmod 777 scriptest.sh
 
 ./scriptest.sh 1 2 3
 
-OUTPUT
+## OUTPUT
 ls file1
 
-OUTPUT
+## OUTPUT
 echo $?
 
-OUTPUT
+## OUTPUT
 ./one bash: ./one: Permission denied
 
 echo $?
 
-OUTPUT
+## OUTPUT
 abcd
 
 echo $?
 
-OUTPUT
+## OUTPUT
 mis-using string comparisons
 cat < strcomp.sh
 
@@ -507,13 +509,13 @@ echo "$val1 is greater than $val2"
 else
 echo "$val1 is less than $val2"
 fi
-##OUTPUT
+## OUTPUT
 
 chmod 755 strcomp.sh
 
 ./strcomp.sh
 
-OUTPUT
+## OUTPUT
 check file ownership
 cat < psswdperm.sh
 
@@ -536,7 +538,7 @@ echo “Sorry, you are not the owner of the /etc/passwd file”
 fi
 ./psswdperm.sh
 
-OUTPUT
+## OUTPUT
 check if with file location
 cat>ifnested.sh
 
@@ -579,7 +581,7 @@ echo “Sorry, the object does not exist”
 fi
 ./ifnested.sh
 
-OUTPUT
+## OUTPUT
 using numeric test comparisons
 cat > iftest.sh
 
@@ -685,7 +687,7 @@ $ chmod 755 elifcheck.sh
 
 $ ./elifcheck.sh
 
-OUTPUT
+## OUTPUT
 testing compound comparisons
 cat> ifcompound.sh
 
@@ -698,7 +700,7 @@ echo "I cannot write to the file"
 fi
 $ chmod 755 ifcompound.sh $ ./ifcompound.sh
 
-OUTPUT
+## OUTPUT
 using the case command
 cat >casecheck.sh
 
@@ -794,7 +796,7 @@ echo The next state is $test
 done
 $ chmod 755 forin1.sh
 
-OUTPUT
+## OUTPUT
 cat forinfile.sh
 
 #!/bin/bash
@@ -845,7 +847,7 @@ $ chmod 755 fornested1.sh
 
 $ ./fornested1.sh
 
-OUTPUT
+## OUTPUT
 cat forbreak.sh
 
 #!/bin/bash
@@ -881,7 +883,7 @@ $ chmod 755 forcontinue.sh
 
 $ ./forcontinue.sh
 
-OUTPUT
+## OUTPUT
 cat exread.sh
 
 #!/bin/bash
@@ -893,7 +895,7 @@ $ chmod 755 exread.sh
 
 $ ./exread.sh
 
-OUTPUT
+## OUTPUT
 cat exread1.sh
 
 #!/bin/bash
@@ -902,7 +904,7 @@ read -p "Enter your name: " name
 echo "Hello $name, welcome to my program. “
 $ chmod 755 exread1.sh
 
-OUTPUT
+## OUTPUT
 $ ./exread1.sh
 
 cat funcex.sh
@@ -919,7 +921,7 @@ echo "The result is $value"
 else
 echo "Usage: badtest1 a b"
 fi
-OUTPUT
+## OUTPUT
 ./funcex.sh
 
 ./funcex.sh 1 2
@@ -951,7 +953,7 @@ for (( i=0;i<$ELEMENTS;i++)); do
 done
 $ chmod 777 argshift.sh 1 2 3
 
-OUTPUT
+## OUTPUT
 1
 2
 3
@@ -966,7 +968,7 @@ done
 set +x
 ./argshift.sh 1 2 3
 
-OUTPUT
+## OUTPUT
 + (( $# ))
 + echo 1
 1
@@ -1008,7 +1010,7 @@ bcdfghj
 ubcdfghj
 awk -f nc.awk data.dat
 
-OUTPUT
+## OUTPUT
 7       bcdfghj
 8       abcdfghj
 7       bcdfghj
@@ -1046,7 +1048,7 @@ then
 else
 	echo "Number is NOT palindrome"
 fi
-OUTPUT
+## OUTPUT
 Enter the number
 545
 Number is palindrome
