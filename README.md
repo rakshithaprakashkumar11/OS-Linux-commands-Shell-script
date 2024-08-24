@@ -450,24 +450,24 @@ cat herecheck.txt
 	echo 'The $$ is ' $$
 	ps
 	^d
+
+	cat scriptest.sh
+	
+	\#!/bin/sh
+	echo “File name is $0 ”
+	echo "File name is " basename $0
+	echo “First arg. is ” $1
+	echo “Second arg. is ” $2
+	echo “Third arg. is ” $3
+	echo “Fourth arg. is ” $4
+	echo 'The $@ is ' $@
+	echo 'The $\# is ' $\#
+	echo 'The $$ is ' $$
+	ps
+	chmod 777 scriptest.sh
+	
+	./scriptest.sh 1 2 3
 '''
-cat scriptest.sh
-
-\#!/bin/sh
-echo “File name is $0 ”
-echo "File name is " basename $0
-echo “First arg. is ” $1
-echo “Second arg. is ” $2
-echo “Third arg. is ” $3
-echo “Fourth arg. is ” $4
-echo 'The $@ is ' $@
-echo 'The $\# is ' $\#
-echo 'The $$ is ' $$
-ps
-chmod 777 scriptest.sh
-
-./scriptest.sh 1 2 3
-
 ## OUTPUT
 ls file1
 
@@ -485,30 +485,34 @@ abcd
 echo $?
 
 ## OUTPUT
-mis-using string comparisons
-cat < strcomp.sh
+'''
 
-\#!/bin/bash
-val1=baseball
-val2=hockey
-if [ $val1 \> $val2 ]
-then
-echo "$val1 is greater than $val2"
-else
-echo "$val1 is less than $val2"
-fi
-^d
-cat strcomp.sh
-
-\#!/bin/bash
-val1=baseball
-val2=hockey
-if [ $val1 \> $val2 ]
-then
-echo "$val1 is greater than $val2"
-else
-echo "$val1 is less than $val2"
-fi
+	mis-using string comparisons
+	cat < strcomp.sh
+	
+	\#!/bin/bash
+	val1=baseball
+	val2=hockey
+	if [ $val1 \> $val2 ]
+	then
+	echo "$val1 is greater than $val2"
+	else
+	echo "$val1 is less than $val2"
+	fi
+	^d
+	cat strcomp.sh
+	
+	\#!/bin/bash
+	val1=baseball
+	val2=hockey
+	if [ $val1 \> $val2 ]
+	then
+	echo "$val1 is greater than $val2"
+	else
+	echo "$val1 is less than $val2"
+	fi
+ 
+'''
 ## OUTPUT
 
 chmod 755 strcomp.sh
@@ -516,177 +520,179 @@ chmod 755 strcomp.sh
 ./strcomp.sh
 
 ## OUTPUT
-check file ownership
-cat < psswdperm.sh
-
-\#!/bin/bash
-if [ -O /etc/passwd ]
-then
-echo “You are the owner of the /etc/passwd file”
-else
-echo “Sorry, you are not the owner of the /etc/passwd file”
-fi
-^d
-cat psswdperm.sh
-
-/#!/bin/bash
-if [ -O /etc/passwd ]
-then
-echo “You are the owner of the /etc/passwd file”
-else
-echo “Sorry, you are not the owner of the /etc/passwd file”
-fi
-./psswdperm.sh
-
-## OUTPUT
-check if with file location
-cat>ifnested.sh
-
-\#!/bin/bash
-if [ -e $HOME ]
-then
-echo “$HOME The object exists, is it a file?”
-if [ -f $HOME ]
-then
-echo “Yes,$HOME it is a file!”
-else
-echo “No,$HOME it is not a file!”
-if [ -f $HOME/.bash_history ]
-then
-echo “But $HOME/.bash_history is a file!”
-fi
-fi
-else
-echo “Sorry, the object does not exist”
-fi
-^d
-cat ifnested.sh
-
-\#!/bin/bash
-if [ -e $HOME ]
-then
-echo “$HOME The object exists, is it a file?”
-if [ -f $HOME ]
-then
-echo “Yes,$HOME it is a file!”
-else
-echo “No,$HOME it is not a file!”
-if [ -f $HOME/.bash_history ]
-then
-echo “But $HOME/.bash_history is a file!”
-fi
-fi
-else
-echo “Sorry, the object does not exist”
-fi
-./ifnested.sh
+'''
+	check file ownership
+	cat < psswdperm.sh
+	
+	\#!/bin/bash
+	if [ -O /etc/passwd ]
+	then
+	echo “You are the owner of the /etc/passwd file”
+	else
+	echo “Sorry, you are not the owner of the /etc/passwd file”
+	fi
+	^d
+	cat psswdperm.sh
+	
+	/#!/bin/bash
+	if [ -O /etc/passwd ]
+	then
+	echo “You are the owner of the /etc/passwd file”
+	else
+	echo “Sorry, you are not the owner of the /etc/passwd file”
+	fi
+	./psswdperm.sh
+'''
 
 ## OUTPUT
-using numeric test comparisons
-cat > iftest.sh
-
-\#!/bin/bash
-val1=10
-val2=11
-if [ $val1 -gt 5 ]
-then
-echo “The test value $val1 is greater than 5”
-fi
-if [ $val1 -eq $val2 ]
-then
-echo “The values are equal”
-else
-echo “The values are different”
-fi
-^d
-cat iftest.sh
-
-\#!/bin/bash
-val1=10
-val2=11
-if [ $val1 -gt 5 ]
-then
-echo “The test value $val1 is greater than 5”
-fi
-if [ $val1 -eq $val2 ]
-then
-echo “The values are equal”
-else
-echo “The values are different”
-fi
-$ chmod 755 iftest.sh
-
-$ ./iftest.sh ##OUTPUT
-
-check if a file
-cat > ifnested.sh
-
-\#!/bin/bash
-if [ -e $HOME ]
-then
-echo “$HOME The object exists, is it a file?”
-if [ -f $HOME ]
-then
-echo “Yes,$HOME it is a file!”
-else
-echo “No,$HOME it is not a file!”
-if [ -f $HOME/.bash_history ]
-then
-echo “But $HOME/.bash_history is a file!”
-fi
-fi
-else
-echo “Sorry, the object does not exist”
-fi
-^d
-cat ifnested.sh
-
-\#!/bin/bash
-if [ -e $HOME ]
-then
-echo “$HOME The object exists, is it a file?”
-if [ -f $HOME ]
-then
-echo “Yes,$HOME it is a file!”
-else
-echo “No,$HOME it is not a file!”
-if [ -f $HOME/.bash_history ]
-then
-echo “But $HOME/.bash_history is a file!”
-fi
-fi
-else
-echo “Sorry, the object does not exist”
-fi
-$ chmod 755 ifnested.sh
-
-$ ./ifnested.sh ##OUTPUT
-
-looking for a possible value using elif
-cat elifcheck.sh
-
-\#!/bin/bash
-if [ $USER = Ram ]
-then
-echo "Welcome $USER"
-echo "Please enjoy your visit"
-elif [ $USER = Rahim ]
-then
-echo "Welcome $USER"
-echo "Please enjoy your visit"
-elif [ $USER = Robert ]
-then
-echo "Special testing account"
-elif [ $USER = gganesh ]
-then
-echo "$USER, Do not forget to logout when you're done"
-else
-echo "Sorry, you are not allowed here"
-fi
-$ chmod 755 elifcheck.sh
-
-$ ./elifcheck.sh
-
+'''
+	check if with file location
+	cat>ifnested.sh
+	
+	\#!/bin/bash
+	if [ -e $HOME ]
+	then
+	echo “$HOME The object exists, is it a file?”
+	if [ -f $HOME ]
+	then
+	echo “Yes,$HOME it is a file!”
+	else
+	echo “No,$HOME it is not a file!”
+	if [ -f $HOME/.bash_history ]
+	then
+	echo “But $HOME/.bash_history is a file!”
+	fi
+	fi
+	else
+	echo “Sorry, the object does not exist”
+	fi
+	^d
+	cat ifnested.sh
+	
+	\#!/bin/bash
+	if [ -e $HOME ]
+	then
+	echo “$HOME The object exists, is it a file?”
+	if [ -f $HOME ]
+	then
+	echo “Yes,$HOME it is a file!”
+	else
+	echo “No,$HOME it is not a file!”
+	if [ -f $HOME/.bash_history ]
+	then
+	echo “But $HOME/.bash_history is a file!”
+	fi
+	fi
+	else
+	echo “Sorry, the object does not exist”
+	fi
+	./ifnested.sh
+'''
+## OUTPUT
+'''
+	using numeric test comparisons
+	cat > iftest.sh
+	
+	\#!/bin/bash
+	val1=10
+	val2=11
+	if [ $val1 -gt 5 ]
+	then
+	echo “The test value $val1 is greater than 5”
+	fi
+	if [ $val1 -eq $val2 ]
+	then
+	echo “The values are equal”
+	else
+	echo “The values are different”
+	fi
+	^d
+	cat iftest.sh
+	
+	\#!/bin/bash
+	val1=10
+	val2=11
+	if [ $val1 -gt 5 ]
+	then
+	echo “The test value $val1 is greater than 5”
+	fi
+	if [ $val1 -eq $val2 ]
+	then
+	echo “The values are equal”
+	else
+	echo “The values are different”
+	fi
+	$ chmod 755 iftest.sh
+	
+	$ ./iftest.sh ##OUTPUT
+	
+	check if a file
+	cat > ifnested.sh
+	
+	\#!/bin/bash
+	if [ -e $HOME ]
+	then
+	echo “$HOME The object exists, is it a file?”
+	if [ -f $HOME ]
+	then
+	echo “Yes,$HOME it is a file!”
+	else
+	echo “No,$HOME it is not a file!”
+	if [ -f $HOME/.bash_history ]
+	then
+	echo “But $HOME/.bash_history is a file!”
+	fi
+	fi
+	else
+	echo “Sorry, the object does not exist”
+	fi
+	^d
+	cat ifnested.sh
+	
+	\#!/bin/bash
+	if [ -e $HOME ]
+	then
+	echo “$HOME The object exists, is it a file?”
+	if [ -f $HOME ]
+	then
+	echo “Yes,$HOME it is a file!”
+	else
+	echo “No,$HOME it is not a file!”
+	if [ -f $HOME/.bash_history ]
+	then
+	echo “But $HOME/.bash_history is a file!”
+	fi
+	fi
+	else
+	echo “Sorry, the object does not exist”
+	fi
+	$ chmod 755 ifnested.sh
+	
+	$ ./ifnested.sh ##OUTPUT
+	
+	looking for a possible value using elif
+	cat elifcheck.sh
+	
+	\#!/bin/bash
+	if [ $USER = Ram ]
+	then
+	echo "Welcome $USER"
+	echo "Please enjoy your visit"
+	elif [ $USER = Rahim ]
+	then
+	echo "Welcome $USER"
+	echo "Please enjoy your visit"
+	elif [ $USER = Robert ]
+	then
+	echo "Special testing account"
+	elif [ $USER = gganesh ]
+	then
+	echo "$USER, Do not forget to logout when you're done"
+	else
+	echo "Sorry, you are not allowed here"
+	fi
+	$ chmod 755 elifcheck.sh
+'''
 ## OUTPUT
 testing compound comparisons
 cat> ifcompound.sh
